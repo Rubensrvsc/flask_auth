@@ -18,4 +18,8 @@ class User(db.Model):
         }
 
 class Task(db.Model):
-    name_task = db.Columns(db.String(200), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    name_task = db.Column(db.String(200), nullable=False)
+    task_id = db.Column(db.Integer, db.ForeignKey('user.id'),
+        nullable=False)
+    user_tasks = db.relationship('User', backref=db.backref('tasks',lazy=True))

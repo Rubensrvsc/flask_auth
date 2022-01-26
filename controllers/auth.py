@@ -8,7 +8,6 @@ from flask_jwt_extended import (
   jwt_required,
   create_access_token,
 )
-import json
 
 @app.route('/login',methods=["POST"])
 def login():
@@ -27,7 +26,6 @@ def register():
   return jsonify({"msg": "Without username or password"}), 401
 
 @app.route('/')
-@jwt_required()
-def hello_world():
+def all_users():
   query = [ result.serialize for result in User.query.all() ] 
   return jsonify(data=query)

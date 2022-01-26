@@ -6,11 +6,13 @@ name = "pypi"
 [scripts]
 app = "python3 app.py"
 shell = "flask shell"
+test = "python -m pytest"
 
 [packages]
 flask="*"
 flask-jwt-extended = "*"
 flask-sqlalchemy = "*"
+pytest = "*"
 
 [dev-packages]
 

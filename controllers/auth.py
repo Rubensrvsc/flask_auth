@@ -1,4 +1,5 @@
 from crypt import methods
+from os import access
 from flask import jsonify, request
 from config.imports import app
 from models.user import User
@@ -11,7 +12,15 @@ from flask_jwt_extended import (
 
 @app.route('/login',methods=["POST"])
 def login():
-  pass
+  username = request.json.get('username')
+  email = request.json.get('email')
+
+  if username and email:
+    user = User.query.filter_by(username=username, email=email).first()
+    access_token = create_access_token(identity=user.username)
+    return jsonify(access_token=access_token)
+    
+  return jsonify({"msg": "Without username or password"}), 401
 
 @app.route('/register',methods=["POST"])
 def register():

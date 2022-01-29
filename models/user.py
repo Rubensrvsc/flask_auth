@@ -6,7 +6,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    tasks = db.relationship('Task', backref='task', lazy=True, primaryjoin="foreign(Task.task_id) == remote(User.id)")
+    tasks = db.relationship('Task', backref='task', lazy=True, primaryjoin="foreign(User.id) == remote(Task.task_id)")
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -22,4 +22,4 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name_task = db.Column(db.String(200), nullable=False)
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'),
-        nullable=False)
+        nullable=True)

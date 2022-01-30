@@ -1,4 +1,3 @@
-from array import array
 from controllers.auth import app
 
 def test_all_users():

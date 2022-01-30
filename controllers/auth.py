@@ -38,3 +38,7 @@ def register():
 def all_users():
   query = [ result.serialize for result in User.query.all() ] 
   return jsonify(data=query)
+
+@app.route('/create_task', methods=["POST"])
+def create_task():
+  pass

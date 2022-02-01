@@ -27,3 +27,10 @@ class Task(db.Model):
 
     def __repr__(self) -> str:
         return f"Task: {self.name_task}"
+    
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name_task': self.name_task
+        }

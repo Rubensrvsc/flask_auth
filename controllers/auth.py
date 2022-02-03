@@ -9,6 +9,7 @@ from flask_jwt_extended import (
   create_access_token,
   current_user,
 )
+from services.get_all_tasks_for_user import all_tasks
 
 
 @jwt.user_lookup_loader
@@ -16,9 +17,9 @@ def user_lookup_callback(_jwt_header, jwt_data):
     identity = jwt_data["sub"]
     return User.query.filter_by(username=identity).one_or_none()
 
-@jwt.user_identity_loader
-def user_identity_lookup(user):
-    return user.id
+# @jwt.user_identity_loader
+# def user_identity_lookup(user):
+#   return user.id
 
 @app.route('/login',methods=["POST"])
 def login():
@@ -47,7 +48,7 @@ def register():
 @app.route('/')
 @jwt_required()
 def all_users():
-  query = [ result.serialize for result in User.query.all() ] 
+  query = all_tasks(current_user.id)
   return jsonify(data=query)
 
 @app.route('/create_task', methods=["POST"])

@@ -16,7 +16,8 @@ class User(db.Model):
     def serialize(self):
         return {
             'id': self.id,
-            'username': self.username
+            'username': self.username,
+            'total_tasks': len(self.tasks)
         }
 
 class Task(db.Model):

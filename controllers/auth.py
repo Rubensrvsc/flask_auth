@@ -10,6 +10,7 @@ from flask_jwt_extended import (
   current_user,
 )
 from services.get_all_tasks_for_user import all_tasks
+from services.create_task import create_task_to_user
 
 
 @jwt.user_lookup_loader
@@ -54,9 +55,5 @@ def all_users():
 @app.route('/create_task', methods=["POST"])
 @jwt_required()
 def create_task():
-  name_task = request.json.get('name_task')
-  task = Task(name_task=name_task)
-  current_user.tasks.append(task)
-  db.session.add(current_user)
-  db.session.commit()
-  return jsonify(data=task.serialize)
+  data = create_task_to_user(current_user.id, request.json.get('name_task'))
+  return jsonify(data=data)

@@ -1,0 +1,6 @@
+flask
+returns
+flask-jwt-extended
+flask-sqlalchemy
+pytest
+returns

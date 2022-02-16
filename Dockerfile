@@ -4,10 +4,6 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip3 install pipenv
+RUN pip3 install -r requirements.txt
 
-RUN pipenv install --system --deploy
-
-EXPOSE 5000
-
-CMD [ "pipenv", "run", "app" ]
+CMD [ "python3", "app.py" ]

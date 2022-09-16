@@ -20,17 +20,14 @@ DRY-Python (Returns)
 
 - Downloading this project
 ```
-git clone https://github.com/Rubensrvsc/medicar.git
+git clone https://github.com/Rubensrvsc/flask_auth.git
 ```
 - Go to dir
 
 ```
 cd backend
 ```
-- If choose to use docker and docker-compose just
-```
-docker-compose up
-```
+
 - If choose to use pipenv just
 ```
 pipenv install
